@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Подать заявку на кредит{% endblock %}
+
+{% block content %}
+    <h2 class="form-title">Подать заявку на кредит</h2>
+
+    <form method="post" class="form-container">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.amount.id_for_label }}">💰 Сумма кредита:</label>
+            {{ form.amount }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.duration.id_for_label }}">📆 Срок (в месяцах):</label>
+            {{ form.duration }}
+        </div>
+
+        <button type="submit" class="submit-btn">🚀 Отправить заявку</button>
+    </form>
+{% endblock %}
+
+<style>
+    .form-title {
+        text-align: center;
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        background-color: #28a745;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: #218838;
+    }
+</style>

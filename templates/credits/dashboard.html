@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Ваши заявки на кредит</h2>
+<ul>
+    {% for application in applications %}
+    <li>Сумма: {{ application.amount }} | Статус: {{ application.get_status_display }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'apply_credit' %}">Подать заявку</a>
+{% endblock %}

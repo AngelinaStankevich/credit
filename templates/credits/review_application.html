@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Рассмотрение заявки №{{ application.id }}</h2>
+<p>Клиент: {{ application.client.user.username }}</p>
+<p>Сумма: {{ application.amount }} ₽</p>
+<p>Срок: {{ application.duration }} мес.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить решение</button>
+</form>
+<a href="{% url 'manage_applications' %}">Назад</a>
+{% endblock %}

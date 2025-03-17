@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Управление заявками</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Клиент</th>
+        <th>Сумма</th>
+        <th>Срок</th>
+        <th>Статус</th>
+        <th>Действия</th>
+    </tr>
+    {% for application in applications %}
+    <tr>
+        <td>{{ application.id }}</td>
+        <td>{{ application.client.user.username }}</td>
+        <td>{{ application.amount }} ₽</td>
+        <td>{{ application.duration }} мес.</td>
+        <td>{{ application.get_status_display }}</td>
+        <td><a href="{% url 'review_application' application.id %}">Рассмотреть</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

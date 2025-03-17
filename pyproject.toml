@@ -9,6 +9,7 @@ packages = [{include = "credit_system"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^5.1.7"
+psycopg2-binary = "^2.9.10"
 
 
 [build-system]

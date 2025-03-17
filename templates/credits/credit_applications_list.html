@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="mb-4">Мои заявки на кредит</h2>
+
+  {% if applications %}
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Сумма</th>
+          <th>Срок (мес.)</th>
+          <th>Статус</th>
+          <th>Дата подачи</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for application in applications %}
+          <tr>
+            <td>{{ application.amount }}</td>
+            <td>{{ application.duration }}</td>
+            <td>
+              {% if application.status == "pending" %}
+                <span class="badge bg-warning">На рассмотрении</span>
+              {% elif application.status == "approved" %}
+                <span class="badge bg-success">Одобрено</span>
+              {% else %}
+                <span class="badge bg-danger">Отклонено</span>
+              {% endif %}
+            </td>
+            <td>{{ application.created_at|date:"d.m.Y H:i" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="alert alert-info">У вас пока нет заявок на кредит.</p>
+  {% endif %}
+
+  <a href="{% url 'dashboard' %}" class="btn btn-primary">Вернуться в личный кабинет</a>
+{% endblock %}

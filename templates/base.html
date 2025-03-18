@@ -8,29 +8,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
-        /* Стили для фиксированного футера внизу страницы */
         html, body {
             height: 100%;
         }
 
         body {
-            padding-top: 56px; /* Отступ для навигационной панели */
+            padding-top: 56px;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         main {
-            flex: 1 0 auto; /* Главное содержимое занимает всё доступное пространство */
+            flex: 1 0 auto;
             padding: 20px 0;
         }
 
         footer {
-            flex-shrink: 0; /* Запрет на сжатие футера */
-            margin-top: auto; /* Автоматический отступ сверху для прижатия вниз */
+            flex-shrink: 0;
+            margin-top: auto;
         }
 
-        /* Кастомизированные стили для ссылки "Выход" */
         .logout-btn {
             color: white;
             background-color: transparent;
@@ -72,19 +70,17 @@
 
                     {% if user.is_authenticated %}
 
-                        {% if user.role != 'bank_employee' %}
+                        {% if user.role == 'client' %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'submit_credit_application' %}">Подать заявку</a>
                             </li>
-                                 <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'credit_applications_list' %}">Заявки на кредит</a>
+                            </li>
                         {% endif %}
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'credit_applications_list' %}">Заявки на кредит</a>
-                        </li>
-
 
                         {% if user.role == 'bank_employee' %}
                             <li class="nav-item">
@@ -92,7 +88,6 @@
                             </li>
                         {% endif %}
 
-                        <!-- Выход -->
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post">
                                 {% csrf_token %}

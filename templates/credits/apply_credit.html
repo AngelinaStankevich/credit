@@ -1,9 +1,184 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Подать заявку на кредит</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Отправить</button>
-</form>
+
+<div class="loan-application-container">
+  <div class="form-header">
+    <h2>Подать заявку на кредит</h2>
+    <p class="subtitle">Заполните форму ниже, чтобы оформить кредитную заявку</p>
+  </div>
+
+  <div class="form-card">
+    <form method="post" class="loan-form">
+      {% csrf_token %}
+
+      <div class="form-fields">
+        {{ form.as_p }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">
+          <span class="btn-icon">✓</span>
+          <span class="btn-text">Отправить заявку</span>
+        </button>
+        <a href="{% url 'home' %}" class="cancel-link">Отмена</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .loan-application-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .form-header h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    color: #7f8c8d;
+    font-size: 16px;
+  }
+
+  .form-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+  }
+
+  .loan-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Стилизация элементов Django формы */
+  .form-fields p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-fields label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #34495e;
+  }
+
+  .form-fields input,
+  .form-fields select,
+  .form-fields textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+
+  .form-fields input:focus,
+  .form-fields select:focus,
+  .form-fields textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    background-color: #fff;
+  }
+
+  .form-fields .helptext {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .form-fields ul.errorlist {
+    color: #e74c3c;
+    margin: 5px 0 0;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+  }
+
+  .submit-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+  }
+
+  .btn-icon {
+    font-size: 18px;
+  }
+
+  .cancel-link {
+    color: #7f8c8d;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  .cancel-link:hover {
+    color: #34495e;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .form-card {
+      padding: 30px 20px;
+    }
+
+    .form-actions {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .cancel-link {
+      align-self: center;
+    }
+  }
+</style>
 {% endblock %}

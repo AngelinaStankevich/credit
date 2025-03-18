@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}Главная | Кредитная система{% endblock %}
-
 {% block content %}
 <div class="hero-section">
   <div class="welcome-container">
@@ -13,11 +12,6 @@
         <span class="btn-text">Перейти в личный кабинет</span>
         <span class="btn-icon">→</span>
       </a>
-    {% else %}
-      <div class="action-buttons">
-        <a href="{% url 'login' %}" class="btn login-btn">Войти</a>
-        <a href="{% url 'register' %}" class="btn register-btn">Регистрация</a>
-      </div>
     {% endif %}
   </div>
 </div>
@@ -104,38 +98,6 @@
     transform: translateX(4px);
   }
 
-  .action-buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .login-btn {
-    background-color: #3498db;
-    color: white;
-    min-width: 140px;
-  }
-
-  .login-btn:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
-  }
-
-  .register-btn {
-    background-color: #fff;
-    color: #3498db;
-    border: 2px solid #3498db;
-    min-width: 140px;
-  }
-
-  .register-btn:hover {
-    background-color: #f8f9fa;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.1);
-  }
-
   @media (max-width: 768px) {
     .welcome-container {
       padding: 30px 20px;
@@ -143,10 +105,6 @@
 
     h1 {
       font-size: 28px;
-    }
-
-    .action-buttons {
-      flex-direction: column;
     }
 
     .btn {

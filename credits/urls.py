@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from credits import views
 from django.contrib.auth import views as auth_views
-from .views import manage_applications, review_application
+from .views import manage_applications, review_application, edit_profile, clients_list
 
 
 urlpatterns = [
@@ -17,4 +17,6 @@ urlpatterns = [
     path('review/<int:application_id>/', review_application, name='review_application'),
     path('submit-credit-application/', views.submit_credit_application, name='submit_credit_application'),
     path('profile/', views.profile, name='profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
+    path('clients/', clients_list, name='clients_list'),
 ]

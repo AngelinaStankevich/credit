@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Client, CreditApplication
-from .forms import CreditApplicationForm, PassportUploadForm, CreditDecisionForm, CustomUserCreationForm
+from .forms import CreditApplicationForm, PassportUploadForm, CreditDecisionForm, CustomUserCreationForm, \
+    ProfileEditForm, ClientForm
+
 
 def home(request):
     """Главная страница"""
@@ -131,3 +133,26 @@ def profile(request):
         form = PassportUploadForm(instance=client)
 
     return render(request, "credits/profile.html", {"form": form, "client": client})
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ClientForm(request.POST, request.FILES, instance=request.user.client)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Перенаправление на страницу профиля
+    else:
+        form = ClientForm(instance=request.user.client)
+
+    return render(request, 'credits/edit_profile.html', {'form': form})
+
+
+def clients_list(request):
+    if not request.user.is_authenticated or request.user.role != 'bank_employee':
+        return redirect('home')  # Ограничение доступа
+
+    # Получаем клиентов, сортируем по ID и оптимизируем запрос
+    clients = Client.objects.select_related("user").order_by("id")
+
+    return render(request, "credits/clients_list.html", {"clients": clients})

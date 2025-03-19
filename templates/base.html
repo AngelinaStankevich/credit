@@ -55,9 +55,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">Главная</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard' %}">Личный кабинет</a>
-                    </li>
 
                     {% if not user.is_authenticated %}
                         <li class="nav-item">
@@ -69,7 +66,6 @@
                     {% endif %}
 
                     {% if user.is_authenticated %}
-
                         {% if user.role == 'client' %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'submit_credit_application' %}">Подать заявку</a>
@@ -85,6 +81,9 @@
                         {% if user.role == 'bank_employee' %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'manage_applications' %}">Управление заявками</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'clients_list' %}">Клиенты</a>
                             </li>
                         {% endif %}
 

@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Ваши заявки на кредит</h2>
-<ul>
-    {% for application in applications %}
-    <li>Сумма: {{ application.amount }} | Статус: {{ application.get_status_display }}</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'apply_credit' %}">Подать заявку</a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">Личный кабинет</h3>
+                </div>
+                <div class="card-body text-center">
+                    <img src="https://via.placeholder.com/100" alt="Аватар" class="rounded-circle mb-3">
+                    <h4 class="card-title">{{ user.username }}</h4>
+                    <p class="card-text text-muted">Роль: <strong>{{ user.get_role_display }}</strong></p>
+                    <p class="card-text"><i class="fas fa-envelope"></i> {{ user.email }}</p>
+                    <a href="{% url 'edit_profile' %}" class="btn btn-warning btn-lg mt-3">
+                        <i class="fas fa-edit"></i> Редактировать профиль
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

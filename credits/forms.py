@@ -36,3 +36,15 @@ class CreditDecisionForm(forms.ModelForm):
     class Meta:
         model = CreditApplication
         fields = ["status"]
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['avatar']

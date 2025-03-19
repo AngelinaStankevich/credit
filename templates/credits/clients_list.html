@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Список клиентов</h2>
+
+    {% if clients %}
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Email</th>
+                    <th>Дата регистрации</th>
+                    <th>Аватар</th>
+                    <th>Паспорт</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.user.username }}</td>
+                    <td>{{ client.user.email }}</td>
+                    <td>{{ client.user.date_joined|date:"d.m.Y" }}</td>
+                    <td>
+                        {% if client.avatar %}
+                            <img src="{{ client.avatar.url }}" alt="Аватар" width="50" height="50" class="rounded-circle">
+                        {% else %}
+                            <img src="/media/avatars/default.jpg" alt="Нет фото" width="50" height="50" class="rounded-circle">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if client.passport_scan %}
+                            <a href="{{ client.passport_scan.url }}" target="_blank">Скачать</a>
+                        {% else %}
+                            <span>Нет файла</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Клиенты не найдены.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -13,6 +13,7 @@ class User(AbstractUser):
 class Client(models.Model):
     user = models.OneToOneField("User", on_delete=models.CASCADE)  # Ссылка на кастомную модель пользователя
     passport_scan = models.FileField(upload_to="passports/", blank=True, null=True)
+    avatar = models.ImageField(upload_to="avatars/", default="avatars/default.jpg", blank=True, null=True)
 
     def __str__(self):
         return self.user.username

@@ -10,6 +10,7 @@ packages = [{include = "credit_system"}]
 python = "^3.11"
 django = "^5.1.7"
 psycopg2-binary = "^2.9.10"
+pillow = "^11.1.0"
 
 
 [build-system]
